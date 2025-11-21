@@ -8,10 +8,12 @@ public class HorizontalLaser extends BaseObstacle {
     public HorizontalLaser(Vector2 startPosition, int length) {
         super(startPosition, length);
     }
+
     @Override
     public void initialize(Vector2 startPosition, int length) {
         super.initialize(startPosition, length);
     }
+
     @Override
     protected void updateCollider() {
         collider = new Rectangle(position.x, position.y, length, WIDTH);
@@ -21,8 +23,9 @@ public class HorizontalLaser extends BaseObstacle {
     protected void drawShape(ShapeRenderer shapeRenderer) {
         shapeRenderer.rect(position.x, position.y, length, WIDTH);
     }
+
     @Override
-    public float getRenderWidth() {
+    protected float getRenderWidth() {
         return length;
     }
 }

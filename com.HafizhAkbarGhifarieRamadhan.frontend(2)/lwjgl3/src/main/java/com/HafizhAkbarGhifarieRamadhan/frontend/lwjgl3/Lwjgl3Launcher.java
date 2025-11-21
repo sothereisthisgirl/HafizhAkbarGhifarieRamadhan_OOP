@@ -3,6 +3,7 @@ package com.HafizhAkbarGhifarieRamadhan.frontend.lwjgl3;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.HafizhAkbarGhifarieRamadhan.frontend.Main;
+import com.badlogic.gdx.graphics.Texture;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
@@ -31,7 +32,14 @@ public class Lwjgl3Launcher {
         configuration.setWindowedMode(640, 480);
         //// You can change these files; they are in lwjgl3/src/main/resources/ .
         //// They can also be loaded from the root of assets/ .
-        configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
+        configuration.setWindowIcon(
+            "icons/libgdx128.png",
+            "icons/libgdx64.png",
+            "icons/libgdx32.png",
+            "icons/libgdx16.png"
+        );
+        new Texture("background.png");
+
         return configuration;
     }
 }
