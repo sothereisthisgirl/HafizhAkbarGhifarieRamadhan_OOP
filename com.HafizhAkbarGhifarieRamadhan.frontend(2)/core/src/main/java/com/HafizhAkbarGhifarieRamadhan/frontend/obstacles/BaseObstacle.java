@@ -23,6 +23,9 @@ public abstract class BaseObstacle {
         updateCollider();
     }
 
+    public void update(float delta) {
+    }
+
     public void render(ShapeRenderer shapeRenderer) {
         if (!active) return;
         drawShape(shapeRenderer);

@@ -1,11 +1,11 @@
 package com.HafizhAkbarGhifarieRamadhan.frontend;
 
+import com.HafizhAkbarGhifarieRamadhan.frontend.states.GameStateManager;
+import com.HafizhAkbarGhifarieRamadhan.frontend.states.MenuState;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.HafizhAkbarGhifarieRamadhan.frontend.states.GameStateManager;
-import com.HafizhAkbarGhifarieRamadhan.frontend.states.MenuState;
 
 public class Main extends Game {
     private GameStateManager gsm;
@@ -15,8 +15,6 @@ public class Main extends Game {
     public void create() {
         spriteBatch = new SpriteBatch();
         gsm = new GameStateManager();
-
-        // Start from MENU, not directly PlayingState
         gsm.push(new MenuState(gsm));
     }
 
@@ -30,7 +28,6 @@ public class Main extends Game {
     @Override
     public void dispose() {
         super.dispose();
-
         if (spriteBatch != null) {
             spriteBatch.dispose();
         }

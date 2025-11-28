@@ -1,4 +1,4 @@
-package com.HafizhAkbarGhifarieRamadhan.frontend.services;
+package com.HafizhAkbarGhifarieRamadhan.frontend.service;
 
 
 import com.badlogic.gdx.Gdx;

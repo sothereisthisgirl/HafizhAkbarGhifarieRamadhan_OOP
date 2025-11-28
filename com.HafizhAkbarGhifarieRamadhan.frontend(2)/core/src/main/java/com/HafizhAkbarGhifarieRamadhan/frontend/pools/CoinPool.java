@@ -2,7 +2,7 @@ package com.HafizhAkbarGhifarieRamadhan.frontend.pools;
 
 import com.badlogic.gdx.math.Vector2;
 import com.HafizhAkbarGhifarieRamadhan.frontend.Coin;
-import com.HafizhAkbarGhifarieRamadhan.frontend.ObjectPool;
+import com.HafizhAkbarGhifarieRamadhan.frontend.pools.ObjectPool;
 
 public class CoinPool extends ObjectPool<Coin> {
 

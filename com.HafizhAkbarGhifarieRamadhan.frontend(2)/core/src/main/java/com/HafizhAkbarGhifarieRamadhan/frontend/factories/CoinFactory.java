@@ -1,47 +1,61 @@
 package com.HafizhAkbarGhifarieRamadhan.frontend.factories;
 
+import com.badlogic.gdx.utils.Pool;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.math.Vector2;
 import com.HafizhAkbarGhifarieRamadhan.frontend.Coin;
-import com.HafizhAkbarGhifarieRamadhan.frontend.pools.CoinPool;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class CoinFactory {
 
-    private final CoinPool coinPool;
-    private final Random random;
-    private final ArrayList<Coin> activeCoins;
+    private final Pool<Coin> coinPool;
+    private final Array<Coin> activeCoins;
 
     public CoinFactory() {
-        this.coinPool = new CoinPool();
-        this.random = new Random();
-        this.activeCoins = new ArrayList<>();
-    }
+        activeCoins = new Array<>();
 
-    public void createCoinPattern(float spawnX, float groundTopY) {
-        if (random.nextFloat() <= 0.3f) {
-            for (int i = 0; i < 3; i++) {
-                Coin coin = coinPool.obtain(spawnX + (i * 40f), groundTopY + 120f);
-                activeCoins.add(coin);
+        coinPool = new Pool<Coin>() {
+            @Override
+            protected Coin newObject() {
+                // Coin requires a Vector2 in the constructor
+                return new Coin(new Vector2(0, 0));
             }
-        }
+        };
     }
 
-    public ArrayList<Coin> getActiveCoins() {
+    public Array<Coin> getActiveCoins() {
         return activeCoins;
+    }
+
+    public Coin obtainCoin(float x, float y) {
+        Coin coin = coinPool.obtain();
+
+        // match your real coin methods
+        coin.setPosition(x, y);
+        coin.setActive(true);
+
+        activeCoins.add(coin);
+        return coin;
     }
 
     public void releaseCoin(Coin coin) {
         coin.setActive(false);
+        activeCoins.removeValue(coin, true);
         coinPool.free(coin);
-        activeCoins.remove(coin);
     }
 
     public void releaseAll() {
-    for (Coin coin : new ArrayList<>(activeCoins)) {
-        coin.setActive(false);
-        coinPool.free(coin);
+        for (Coin c : activeCoins) {
+            c.setActive(false);
+            coinPool.free(c);
+        }
+        activeCoins.clear();
     }
-    activeCoins.clear();
+
+    // Simple coin line pattern
+    public void createCoinPattern(float baseX, float groundY) {
+        for (int i = 0; i < 5; i++) {
+            obtainCoin(baseX + i * 40f, groundY + 200f);
+        }
+    }
 }
 
-}
