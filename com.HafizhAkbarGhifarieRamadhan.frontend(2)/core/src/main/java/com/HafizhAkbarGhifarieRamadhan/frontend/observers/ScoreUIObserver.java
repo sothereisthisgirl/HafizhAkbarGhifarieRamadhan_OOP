@@ -25,7 +25,7 @@ public class ScoreUIObserver implements Observer {
         Gdx.app.log("ScoreUI", "Score updated: " + score);
     }
 
-    public void render(int score) {
+    public void render(int score, int coins) {
         batch.begin();
         font.draw(batch, "Score: " + score, 10, Gdx.graphics.getHeight() - 20);
         batch.end();

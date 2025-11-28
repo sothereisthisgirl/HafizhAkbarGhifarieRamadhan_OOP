@@ -27,11 +27,11 @@ public class Player {
         position = new Vector2(startPosition);
 
         collider = new Rectangle(
-            position.x,
-            position.y,
-            width,
-            height
-        );
+                position.x,
+                position.y,
+                width,
+                height
+            );
         velocity = new Vector2(baseSpeed, 0);
     }
 
@@ -102,7 +102,7 @@ public class Player {
         shapeRenderer.setColor(0f, 1f, 0f, 1f);
         shapeRenderer.rect(position.x, position.y, width, height);
     }
-
+    
     // Public method for command pattern
     public void fly() {
         if (!isDead) {
